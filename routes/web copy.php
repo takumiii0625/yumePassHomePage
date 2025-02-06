@@ -2,25 +2,10 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ContactController;
 
-// トップページ
 Route::get('/', function () {
     return view('welcome');
 });
-
-// 会社紹介ページ
-Route::get('/about', function () {
-    return view('about');
-});
-
-// コンタクトフォームページ (GETリクエスト)
-Route::get('/contact', function () {
-    return view('contact');
-});
-
-// コンタクトフォームのデータ送信を処理するルート (POSTリクエスト)
-Route::post('/contact', [ContactController::class, 'store']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
