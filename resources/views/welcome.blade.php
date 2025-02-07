@@ -4,11 +4,11 @@
 
 @section('content')
     <!-- ヒーローセクション -->
-    <div class="bg-gradient-to-r from-green-500 via-teal-400 to-blue-500 text-white py-32">
+    <div class="bg-gradient-to-r from-green-500 via-teal-400 to-blue-500 text-black py-32">
         <div class="max-w-4xl mx-auto text-center">
-            <h1 class="text-5xl font-extrabold mb-4">あなたの好きな料理がすぐに見つかる！</h1>
-            <p class="text-2xl mb-8">メニューをチェックして、サブスクリプション特典を楽しもう！</p>
-            <a href="/menu" class="bg-teal-600 hover:bg-teal-700 text-white py-3 px-8 rounded-full text-xl transition duration-300">
+            <h1 class="text-5xl font-extrabold mb-4 text-black">あなたの好きな料理がすぐに見つかる！</h1>
+            <p class="text-2xl mb-8 text-black">メニューをチェックして、サブスクリプション特典を楽しもう！</p>
+            <a href="/menu" class="bg-teal-600 text-black hover:bg-teal-700 hover:text-white py-3 px-8 rounded-full text-xl transition duration-300 ease-in-out">
                 メニューを見る
             </a>
         </div>
@@ -22,7 +22,7 @@
             <div class="bg-teal-100 p-8 rounded-lg shadow-lg">
                 <h3 class="text-2xl font-semibold text-teal-700 mb-4">サブスクリプション特典</h3>
                 <p class="text-xl text-teal-600 mb-6">月額のサブスクリプションで、来店時に無料で1品をお選びいただけます。</p>
-                <a href="/subscribe" class="bg-teal-600 hover:bg-teal-700 text-white py-3 px-8 rounded-full text-lg transition duration-300">
+                <a href="/subscribe" class="bg-teal-600 text-black hover:bg-teal-700 hover:text-white py-3 px-8 rounded-full text-lg transition duration-300 ease-in-out">
                     サブスク登録
                 </a>
             </div>
@@ -34,7 +34,7 @@
         <div class="max-w-4xl mx-auto">
             <h3 class="text-3xl font-semibold text-gray-800 mb-6">豊富なメニューをチェック</h3>
             <p class="text-lg text-gray-600 mb-8">あなたの好きな料理を、今すぐアプリでチェック！</p>
-            <a href="/menu" class="bg-green-600 hover:bg-green-700 text-white py-3 px-8 rounded-full text-lg transition duration-300">
+            <a href="/menu" class="bg-green-600 text-black hover:bg-green-700 hover:text-white py-3 px-8 rounded-full text-lg transition duration-300 ease-in-out">
                 メニューを見る
             </a>
         </div>
@@ -66,11 +66,11 @@
     </div>
 
     <!-- CTAセクション -->
-    <div class="py-16 bg-green-500 text-white text-center">
+    <div class="py-16 bg-green-500 text-black text-center">
         <div class="max-w-4xl mx-auto">
             <h3 class="text-3xl font-semibold mb-4">今すぐサブスクに登録して、お得に料理を楽しもう！</h3>
             <p class="text-lg mb-6">サブスクリプションに登録して、来店時に1品無料！あなたの食事をよりお得に。</p>
-            <a href="/subscribe" class="bg-teal-600 hover:bg-teal-700 py-3 px-8 rounded-full text-lg transition duration-300">
+            <a href="/subscribe" class="bg-teal-600 text-black hover:bg-teal-700 hover:text-white py-3 px-8 rounded-full text-lg transition duration-300 ease-in-out">
                 サブスク登録
             </a>
         </div>

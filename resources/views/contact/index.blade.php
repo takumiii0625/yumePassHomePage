@@ -15,27 +15,31 @@
 
                             <div class="col-md-9">
                                 <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
                             </div>
                         </div>
-             
+
+                        @error('email')
+                            <span class="invalid-feedback text-red-500" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+
                         <div class="form-group row">
                             <label for="contact" class="col-md-3 col-form-label text-md-right">お問い合わせ内容</label>
                             <div class="col-md-9">
                                 <textarea id="contact" class="form-control  @error('contact') is-invalid @enderror" name="contact" cols="30" rows="10"></textarea>
-
-                                @error('contact')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
                             </div>
                         </div>
+
+                        @error('contact')
+                            <div class="form-group row">
+                                <div class="col-md-9 offset-md-3">
+                                    <span class="invalid-feedback text-red-500" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                </div>
+                            </div>
+                        @enderror
 
                         <div class="form-group row mb-0">
                             <div class="col-md-9 offset-md-3">

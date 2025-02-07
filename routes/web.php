@@ -32,6 +32,21 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+//利用規約ページ
+Route::get('/terms', function () {
+    return view('terms');
+});
+
+//プライバシーポリシーページ
+Route::get('/privacy', function () {
+    return view('privacy');
+});
+
+//特商法取引ページ
+Route::get('/legal', function () {
+    return view('legal');
+});
+
 
 
 require __DIR__.'/auth.php';
