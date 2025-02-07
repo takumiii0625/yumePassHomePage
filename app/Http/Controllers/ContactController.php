@@ -3,27 +3,29 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\ContactFormRequest;
+use App\Mail\ContactSendmail;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\ContactFormMail;
+
 
 class ContactController extends Controller
 {
-    public function store(Request $request)
+    public function index()
     {
-        // バリデーションルールを適用
-        $validated = $request->validate([
-            'name' => 'required|max:255',
-            'email' => 'required|email',
-            'message' => 'required',
-        ]);
+        return view('contact.index');
+    }
 
-        // メール送信処理（例：Mailクラスを使用）
-        Mail::to('your-email@example.com')->send(new ContactFormMail($validated));
+    public function confirm(ContactFormRequest $request)
+    {
+        $contact = $request->all();
+        return view('contact.confirm',compact('contact'));
+    }
 
-        // バリデーションが通れば後続の処理へ
-        // 例：データベースへの保存やメール送信など
-
-        // 処理後、適切なリダイレクトやメッセージ表示
-        return redirect('/')->with('success', 'お問い合わせありがとうございます！');
+    public function send(ContactFormRequest $request)
+    {
+        $contact = $request->all();
+        Mail::to('your_address@example.com')->send(new ContactSendmail($contact));
+        $request->session()->regenerateToken();
+        return view('contact.thanks');
     }
 }

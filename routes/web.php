@@ -14,13 +14,13 @@ Route::get('/about', function () {
     return view('about');
 });
 
-// コンタクトフォームページ (GETリクエスト)
-Route::get('/contact', function () {
-    return view('contact');
-});
+//コンタクトフォーム
+Route::get('/contact', [ContactController::class, 'index'])->name('index');
+//確認ページ
+Route::post('/contact/confirm', [ContactController::class, 'confirm'])->name('confirm');
+//送信完了ページ
+Route::post('/contact/thanks', [ContactController::class, 'send'])->name('send');
 
-// コンタクトフォームのデータ送信を処理するルート (POSTリクエスト)
-Route::post('/contact', [ContactController::class, 'store']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -31,5 +31,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+
 
 require __DIR__.'/auth.php';
