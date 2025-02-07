@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <title>夢パス - @yield('title')</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body class="bg-gray-50">
@@ -28,9 +29,9 @@
     <main class="container mx-auto px-4 py-8">
         <!-- サクセスメッセージ -->
         @if (session('success'))
-            <div class="bg-green-200 text-green-800 p-4 rounded-lg mb-8">
-                {{ session('success') }}
-            </div>
+        <div class="bg-green-200 text-green-800 p-4 rounded-lg mb-8">
+            {{ session('success') }}
+        </div>
         @endif
 
         @yield('content')
