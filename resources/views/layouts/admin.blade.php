@@ -15,13 +15,18 @@
     <header class="fixed top-0 left-0 w-full bg-white text-black py-6 shadow-lg z-50">
         <div class="max-w-7xl mx-auto px-4 flex justify-between items-center">
             <!-- ロゴ -->
-            <h1 class="text-4xl font-extrabold">夢パス</h1>
-            <!-- ナビゲーション -->
+            <h1 class="text-4xl font-extrabold">管理者画面</h1>
+            <!-- ログアウトボタン -->
             <nav>
                 <ul class="flex space-x-8 text-lg">
-                    <li><a href="{{ url('/') }}" class="text-black transition duration-300">トップページ</a></li>
-                    <li><a href="{{ url('/about') }}" class="text-black transition duration-300">会社概要</a></li>
-                    <li><a href="{{ url('/contact') }}" class="text-black transition duration-300">お問い合わせ</a></li>
+                    <li>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="text-black transition duration-300">
+                                ログアウト
+                            </button>
+                        </form>
+                    </li>
                 </ul>
             </nav>
         </div>
