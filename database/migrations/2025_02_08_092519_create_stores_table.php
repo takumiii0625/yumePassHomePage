@@ -14,9 +14,16 @@ return new class extends Migration
         Schema::create('stores', function (Blueprint $table) {
             $table->id(); // 主キー
             $table->string('name'); // 店舗名
-            $table->text('description'); // 店舗の詳細
-            $table->string('location'); // 住所
-            $table->timestamps(); // 作成日と更新日のカラム
+            $table->string('zip1')->nullable();        // 郵便番号1
+            $table->string('zip2')->nullable();        // 郵便番号2
+            $table->string('address')->nullable();     // 住所
+            $table->string('build')->nullable();       // 建物
+            $table->text('contents')->nullable();      // 備考
+            $table->string('url')->nullable();         // ホームページのURL
+            $table->string('image')->nullable();       // 画像
+            $table->tinyInteger('delete_flg')->default(0); // 削除フラグ
+            $table->timestamp('created_at')->nullable(); // 作成日時
+            $table->timestamp('updated_at')->nullable(); // 更新日時
         });
     }
 

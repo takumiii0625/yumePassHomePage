@@ -62,6 +62,23 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(
 // フロントエンドの店舗一覧ページ
 Route::get('/stores', [FrontendStoreController::class, 'showStores']);
 
+// 店舗一覧
+Route::get('admin/stores', [AdminStoreController::class, 'index'])->name('adminStoreControllerIndex');
+
+//店舗詳細ページ
+Route::get('admin/stores/{id}', [AdminStoreController::class, 'show'])->name('adminStoreControllerShow');
+
+// 店舗登録(入力)
+Route::get('admin/stores/create/input', [AdminStoreController::class, 'createInput'])->name('adminStoreControllerInput');
+// 店舗登録(確認)
+Route::post('admin/stores/create/confirm', [AdminStoreController::class, 'createConfirm'])->name('adminStoreControllerConfirm');
+// 店舗登録(処理)
+Route::post('admin/stores/create/complete', [AdminStoreController::class, 'createExecute'])->name('adminStoreControllerExecute');
+// 店舗登録(完了)
+Route::get('admin/stores/create/complete', [AdminStoreController::class, 'createComplete'])->name('adminStoreControllerComplete');
+
+
+
 //ログアウト
 Route::post('/logout', function () {
     Auth::logout();
