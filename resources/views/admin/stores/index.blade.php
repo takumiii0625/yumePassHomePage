@@ -18,11 +18,11 @@
                     <tr class="border-b hover:bg-gray-50">
                         <td class="px-6 py-4">{{ $store->name }}</td>
                         <td class="px-6 py-4">
-                            <a href="{{ route('admin.stores.show', $store->id) }}" class="text-green-600 hover:text-green-800 transition duration-300">詳細</a>
-                            <a href="{{ route('admin.stores.edit', $store->id) }}" class="text-blue-600 hover:text-blue-800 transition duration-300 ml-4">編集</a>
-                            <form action="{{ route('admin.stores.destroy', $store->id) }}" method="POST" style="display:inline;" onsubmit="return confirmDelete();">
+                            <a href="{{ route('adminStoreControllerShow', $store->id) }}" class="text-green-600 hover:text-green-800 transition duration-300">詳細</a>
+                            <a href="{{ route('adminStoreControllerEditInput', $store->id) }}" class="text-blue-600 hover:text-blue-800 transition duration-300 ml-4">編集</a>
+                            
                                 @csrf
-                                @method('DELETE')
+                                
                                 <button type="submit" class="text-red-600 hover:text-red-800 transition duration-300 ml-4">削除</button>
                             </form>
                         </td>
