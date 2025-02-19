@@ -211,19 +211,17 @@ class StoreController extends Controller
         return view('admin/stores/edit/complete', compact('assign'));
     }
 
-
-
 }
 
 
 //     //
 //     // 新しい店舗を保存
-//     public function store(CreateRequest $request)
-//     {
-//         // 画像の処理
-//         if ($request->hasFile('image')) {
-//             $imagePath = $request->file('image')->store('public/store_images');
-//         }
+    // public function store(CreateRequest $request)
+    // {
+    //     // 画像の処理
+    //     if ($request->hasFile('image')) {
+    //         $imagePath = $request->file('image')->store('public/store_images');
+    //     }
 
 //         // バリデーションは CreateRequest で処理されるので不要
 //         // バリデーションが通ったデータを使って新しい店舗を保存
