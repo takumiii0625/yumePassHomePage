@@ -59,6 +59,9 @@
         </div>
     </footer>
 
+    <!-- JavaScript -->
+    @yield('scripts')
+
 </body>
 
 </html>

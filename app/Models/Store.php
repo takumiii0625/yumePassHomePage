@@ -11,8 +11,16 @@ class Store extends Model
 
     protected $fillable = [
         'name',
-        'description',
-        'location',
+        'zip1',
+        'zip2',
+        'address',
+        'build',
+        'contents',
+        'url',
+        'image',
+        'delete_flg'
     ];
+
+    public $timestamps = false;
 }
 
