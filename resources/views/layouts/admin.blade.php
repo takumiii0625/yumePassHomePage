@@ -50,9 +50,9 @@
             <p class="mb-4 text-lg">夢パス - あなたの食生活をサポートします。</p>
             <nav>
                 <ul class="flex justify-center space-x-8 text-lg">
-                    <li><a href="{{ url('/terms') }}" class="hover:text-gray-400 transition duration-300">利用規約</a></li>
-                    <li><a href="{{ url('/privacy') }}" class="hover:text-gray-400 transition duration-300">プライバシーポリシー</a></li>
-                    <li><a href="{{ url('/legal') }}" class="hover:text-gray-400 transition duration-300">特商法取引</a></li>
+                    <li><a href="{{ url('/user-agreement') }}" class="hover:text-gray-400 transition duration-300">利用規約</a></li>
+                    <li><a href="{{ url('/privacypolicy') }}" class="hover:text-gray-400 transition duration-300">プライバシーポリシー</a></li>
+                    <li><a href="{{ url('/tokuteisyoutorihiki') }}" class="hover:text-gray-400 transition duration-300">特商法取引</a></li>
                 </ul>
             </nav>
             <p class="text-gray-400 text-sm mt-4">© 2025 夢パス. All Rights Reserved.</p>

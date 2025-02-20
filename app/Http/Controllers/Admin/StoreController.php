@@ -12,13 +12,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\QueryException;
+use Carbon\Carbon;
 class StoreController extends Controller
 {
     // 店舗一覧の表示
     public function index()
     {
         // すべての店舗を取得（ページネーション）
-        $stores = Store::paginate(10); // 必要に応じてページごとの店舗数を変更
+        $stores = DB::table('stores')
+        ->where('delete_flg', 0)
+        ->paginate(10); // 必要に応じてページごとの店舗数を変更
 
         // ビューに店舗データを渡す
         return view('admin/stores/index', compact('stores'));
@@ -210,6 +213,70 @@ class StoreController extends Controller
 
         return view('admin/stores/edit/complete', compact('assign'));
     }
+
+
+    //店舗削除
+    public function deleteExecute(Request $request, $id)
+        {
+            // CSRFトークンの再生成
+            $request->session()->regenerateToken();
+
+            // 削除対象の店舗を取得
+            $store = DB::table('stores')->where('id', $id)->first();
+
+            // 店舗が存在しない場合はリダイレクト
+            if (!$store) {
+                return redirect()->route('adminStoreControllerIndex')->with('error', '店舗が存在しません。');
+            }
+
+            try {
+                DB::beginTransaction();
+
+                // 論理削除（delete_flg を 1 にする）
+                DB::table('stores')->where('id', $id)->update([
+                    'delete_flg' => 1,
+                    'updated_at' => Carbon::now()
+                ]);
+
+                DB::commit();
+            } catch (QueryException $e) {
+                DB::rollBack();
+                $params = implode(', ', $e->getBindings());
+                Log::error('ERROR'.__METHOD__.'#'.__LINE__."\nSQL: {$e->getSql()}\nParams: {$params}\n{$e}\n\n");
+
+                return redirect()->route('adminStoreControllerIndex')
+                    ->with('error', 'データベースエラーが発生しました。時間をおいて再度お試しください。');
+            } catch (\Throwable $e) {
+                DB::rollBack();
+                Log::error('ERROR'.__METHOD__.'#'.__LINE__." >>> {$e}\n\n");
+
+                return redirect()->route('adminStoreControllerIndex')
+                    ->with('error', '予期せぬエラーが発生しました。時間をおいて再度お試しください。');
+            }
+
+            return redirect()->route('adminStoreControllerIndex')->with('success', '店舗を削除しました。');
+        }
+
+
+    //店舗詳細画面
+    public function show(Request $request, $id)
+        {
+            // フォームで使ったセッションを削除（途中でやめた場合を考慮）
+            session()->forget(['createInputStore', 'insertStore', 'updateInputStore', 'updateStore']);
+
+            // 店舗情報を取得（削除されていないもののみ）
+            $store = DB::table('stores')
+                ->where('id', $id)
+                ->where('delete_flg', 0)
+                ->first();
+
+            // 店舗が存在しない場合はリダイレクト
+            if (!$store) {
+                return redirect()->route('adminStoreControllerIndex')->with('error', '店舗が存在しません。');
+            }
+
+            return view('admin/stores/show', compact('store'));
+        }
 
 }
 
