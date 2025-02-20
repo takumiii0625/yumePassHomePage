@@ -29,7 +29,7 @@ Route::post('/contact/thanks', [ContactController::class, 'send'])->name('send')
 
 Route::get('/dashboard', function () {
     // ダッシュボードにアクセスした際に、admin.stores.index へリダイレクト
-    return redirect()->route('admin.stores.index');
+    return redirect()->route('adminStoreControllerIndex');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
@@ -55,9 +55,9 @@ Route::get('/legal', function () {
 });
 
 // 管理者用の店舗CRUDルート
-Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(function () {
-    Route::resource('stores', AdminStoreController::class);
-});
+// Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(function () {
+//     Route::resource('stores', AdminStoreController::class);
+// });
 
 // フロントエンドの店舗一覧ページ
 Route::get('/stores', [FrontendStoreController::class, 'showStores']);
@@ -77,6 +77,14 @@ Route::post('admin/stores/create/complete', [AdminStoreController::class, 'creat
 // 店舗登録(完了)
 Route::get('admin/stores/create/complete', [AdminStoreController::class, 'createComplete'])->name('adminStoreControllerComplete');
 
+// 店舗編集(入力)
+Route::get('/admin/stores/{id}/edit', [AdminStoreController::class, 'editInput'])->name('adminStoreControllerEditInput');
+// 店舗編集(確認)
+Route::post('/admin/stores/{id}/edit/confirm', [AdminStoreController::class, 'editConfirm'])->name('adminStoreControllerEditConfirm');
+// 店舗編集(処理)
+Route::post('/admin/stores/{id}/edit/execute', [AdminStoreController::class, 'editExecute'])->name('adminStoreControllerEditExecute');
+// 店舗編集(完了)
+Route::get('/admin/stores/{id}/edit/complete', [AdminStoreController::class, 'editComplete'])->name('adminStoreControllerEditComplete');
 
 
 //ログアウト
