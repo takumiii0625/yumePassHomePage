@@ -20,10 +20,11 @@
                         <td class="px-6 py-4">
                             <a href="{{ route('adminStoreControllerShow', $store->id) }}" class="text-green-600 hover:text-green-800 transition duration-300">詳細</a>
                             <a href="{{ route('adminStoreControllerEditInput', $store->id) }}" class="text-blue-600 hover:text-blue-800 transition duration-300 ml-4">編集</a>
-                            
+                            <form action="{{ route('adminStoreControllerDeleteExecute', $store->id) }}" method="POST" class="inline-block" onsubmit="return confirm('本当に削除しますか？');">
                                 @csrf
-                                
-                                <button type="submit" class="text-red-600 hover:text-red-800 transition duration-300 ml-4">削除</button>
+                                <button type="submit" class="text-red-600 hover:text-red-800 transition duration-300 ml-4">
+                                    削除
+                                </button>
                             </form>
                         </td>
                     </tr>

@@ -40,18 +40,18 @@ Route::middleware('auth')->group(function () {
 });
 
 //利用規約ページ
-Route::get('/terms', function () {
-    return view('terms');
+Route::get('/user-agreement', function () {
+    return view('user-agreement');
 });
 
 //プライバシーポリシーページ
-Route::get('/privacy', function () {
-    return view('privacy');
+Route::get('/privacypolicy', function () {
+    return view('privacypolicy');
 });
 
 //特商法取引ページ
-Route::get('/legal', function () {
-    return view('legal');
+Route::get('/tokuteisyoutorihiki', function () {
+    return view('tokuteisyoutorihiki');
 });
 
 // 管理者用の店舗CRUDルート
@@ -85,7 +85,10 @@ Route::post('/admin/stores/{id}/edit/confirm', [AdminStoreController::class, 'ed
 Route::post('/admin/stores/{id}/edit/execute', [AdminStoreController::class, 'editExecute'])->name('adminStoreControllerEditExecute');
 // 店舗編集(完了)
 Route::get('/admin/stores/{id}/edit/complete', [AdminStoreController::class, 'editComplete'])->name('adminStoreControllerEditComplete');
-
+// 店舗削除
+Route::post('/admin/stores/{id}/delete', [AdminStoreController::class, 'deleteExecute'])->name('adminStoreControllerDeleteExecute');
+// 店舗詳細
+Route::get('/admin/stores/{id}', [AdminStoreController::class, 'show'])->name('adminStoreControllerShow');
 
 //ログアウト
 Route::post('/logout', function () {
