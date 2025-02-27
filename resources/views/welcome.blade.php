@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'レストランのメニューを今すぐチェック！')
+@section('title')
 
 @section('content')
     <!-- ヒーローセクション -->

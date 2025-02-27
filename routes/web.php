@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Admin\StoreController as AdminStoreController;
 use App\Http\Controllers\StoreController as FrontendStoreController;
+use App\Http\Controllers\Admin\NewsController as AdminNewsController;
+use App\Http\Controllers\Admin\NewsController;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -89,6 +91,36 @@ Route::get('/admin/stores/{id}/edit/complete', [AdminStoreController::class, 'ed
 Route::post('/admin/stores/{id}/delete', [AdminStoreController::class, 'deleteExecute'])->name('adminStoreControllerDeleteExecute');
 // 店舗詳細
 Route::get('/admin/stores/{id}', [AdminStoreController::class, 'show'])->name('adminStoreControllerShow');
+
+
+// お知らせ一覧
+Route::get('/admin/store', [AdminNewsController::class, 'index'])->name('adminNewsIndex');
+
+// お知らせ詳細ページ
+Route::get('/admin/news/{id}', [AdminNewsController::class, 'show'])->name('adminNewsShow');
+
+// お知らせ登録(入力)
+Route::get('/admin/news/create/input', [NewsController::class, 'createInput'])->name('adminNewsCreateInput');
+// お知らせ登録(確認)
+Route::post('/admin/news/create/confirm', [NewsController::class, 'createConfirm'])->name('adminNewsCreateConfirm');
+// お知らせ登録(処理)
+Route::post('/admin/news/create/execute', [NewsController::class, 'createExecute'])->name('adminNewsCreateExecute');
+// お知らせ登録(完了)
+Route::get('/admin/news/create/complete', [NewsController::class, 'createComplete'])->name('adminNewsCreateComplete');
+
+
+// お知らせ編集(入力)
+Route::get('/admin/news/{id}/edit', [AdminNewsController::class, 'editInput'])->name('adminNewsEditInput');
+// お知らせ編集(確認)
+Route::post('/admin/news/{id}/edit/confirm', [AdminNewsController::class, 'editConfirm'])->name('adminNewsEditConfirm');
+// お知らせ編集(処理)
+Route::post('/admin/news/{id}/edit/execute', [AdminNewsController::class, 'editExecute'])->name('adminNewsEditExecute');
+// お知らせ編集(完了)
+Route::get('/admin/news/{id}/edit/complete', [AdminNewsController::class, 'editComplete'])->name('adminNewsEditComplete');
+// お知らせ削除
+Route::post('/admin/news/{id}/delete', [AdminNewsController::class, 'deleteExecute'])->name('adminNewsDeleteExecute');
+
+
 
 //ログアウト
 Route::post('/logout', function () {

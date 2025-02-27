@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <title>夢パス - @yield('title')</title>
+    <title>店舗パス</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
@@ -15,7 +15,7 @@
     <header class="fixed top-0 left-0 w-full bg-white text-black py-6 shadow-lg z-50">
         <div class="max-w-7xl mx-auto px-4 flex justify-between items-center">
             <!-- ロゴ -->
-            <h1 class="text-4xl font-extrabold">夢パス</h1>
+            <h1 class="text-4xl font-extrabold">店舗パス</h1>
             <!-- ナビゲーション -->
             <nav>
                 <ul class="flex space-x-8 text-lg">
