@@ -56,19 +56,50 @@
 
     <!-- サブスクが使えるお店一覧 -->
     <div class="py-20 bg-gray-900 text-center text-white">
-        <div class="max-w-4xl mx-auto">
+        <div class="max-w-6xl mx-auto">
             <h3 class="text-3xl font-semibold mb-6">サブスクが使えるお店</h3>
             <p class="text-lg mb-8">以下の店舗でサブスクリプション特典を利用できます！</p>
-            <div class="flex justify-center space-x-8">
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 @foreach ($stores as $store) <!-- 店舗データをループ -->
-                    <div class="bg-gray-700 p-6 rounded-lg shadow-xl w-1/4">
-                        <h4 class="font-semibold text-white">{{ $store->name }}</h4> <!-- 店舗名 -->
-                        <p class="text-gray-300">{{ $store->location }}</p> <!-- 住所 -->
-                        <p class="text-gray-400">{{ $store->description }}</p> <!-- 店舗の詳細 -->
+                    <div class="bg-white p-6 rounded-lg shadow-xl text-gray-900">
+                        <!-- 画像 -->
+                        @if ($store->image)
+                            <img src="{{ asset('storage/' . $store->image) }}" alt="{{ $store->name }}" class="w-full h-40 object-cover rounded-lg mb-4">
+                        @else
+                            <div class="w-full h-40 bg-gray-300 rounded-lg flex items-center justify-center text-gray-600">
+                                画像なし
+                            </div>
+                        @endif
+
+                        <!-- 店舗情報 -->
+                        <h4 class="text-xl font-semibold text-gray-800">{{ $store->name }}</h4>
+                        
+                        <!-- 郵便番号 -->
+                        <p class="text-gray-600 mt-2">〒{{ $store->zip1 }}-{{ $store->zip2 }}</p>
+
+                        <!-- 住所 -->
+                        <p class="text-gray-600">{{ $store->address }}</p>
+
+                        <!-- 建物名 (あれば表示) -->
+                        @if ($store->build)
+                            <p class="text-gray-600">{{ $store->build }}</p>
+                        @endif
+
+                        <!-- URL (クリックで飛べる) -->
+                        @if ($store->url)
+                            <p class="mt-4">
+                                <a href="{{ $store->url }}" target="_blank" class="text-blue-600 hover:text-blue-800 transition duration-300">
+                                    店舗のウェブサイト
+                                </a>
+                            </p>
+                        @endif
                     </div>
                 @endforeach
             </div>
         </div>
     </div>
+
+</div>
 
 @endsection

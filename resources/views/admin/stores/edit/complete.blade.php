@@ -8,7 +8,7 @@
 
     <!-- 店舗一覧に戻るボタン -->
     <div class="mt-6">
-        <a href="{{ route('adminStoreControllerIndex') }}" class="bg-teal-600 text-white py-2 px-4 rounded-lg hover:bg-teal-700 transition duration-300">
+        <a href="{{ route('adminIndex') }}" class="bg-teal-600 text-white py-2 px-4 rounded-lg hover:bg-teal-700 transition duration-300">
             店舗一覧に戻る
         </a>
     </div>

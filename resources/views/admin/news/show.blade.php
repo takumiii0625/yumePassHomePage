@@ -14,7 +14,7 @@
 
     <!-- 戻るボタン -->
     <div class="mt-6 flex space-x-4">
-        <a href="{{ route('adminNewsIndex') }}" class="bg-gray-500 text-white py-2 px-4 rounded-lg hover:bg-gray-600">
+        <a href="{{ route('adminIndex') }}" class="bg-gray-500 text-white py-2 px-4 rounded-lg hover:bg-gray-600">
             お知らせ一覧に戻る
         </a>
         <a href="{{ route('adminNewsEditInput', ['id' => $news->id]) }}" class="bg-teal-600 text-white py-2 px-4 rounded-lg hover:bg-teal-700">

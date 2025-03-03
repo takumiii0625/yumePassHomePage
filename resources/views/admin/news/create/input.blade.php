@@ -43,7 +43,7 @@
 
 <!-- お知らせ一覧へ戻るボタン -->
 <div class="mt-4">
-    <a href="{{ route('adminNewsIndex') }}" class="w-full bg-gray-300 text-black py-2 px-4 rounded-lg hover:bg-gray-400 transition duration-300">
+    <a href="{{ route('adminIndex') }}" class="w-full bg-gray-300 text-black py-2 px-4 rounded-lg hover:bg-gray-400 transition duration-300">
         お知らせ一覧に戻る
     </a>
 </div>

@@ -22,8 +22,9 @@ class NewsController extends Controller
         $stores = Store::where('delete_flg', 0)->paginate(10);
         $news = News::where('delete_flg', 0)->orderBy('published_at', 'desc')->paginate(10);
 
-        return view('admin/stores/index', compact('stores', 'news'));
+        return view('admin/index', compact('stores', 'news'));
     }
+
 
     // お知らせ登録(入力)
     public function createInput()
@@ -82,7 +83,7 @@ class NewsController extends Controller
         $news = News::where('id', $id)->where('delete_flg', 0)->first();
 
         if (!$news) {
-            return redirect()->route('adminNewsIndex')->with('error', 'お知らせが存在しません。');
+            return redirect()->route('adminIndex')->with('error', 'お知らせが存在しません。');
         }
 
         return view('admin/news/edit/input', compact('news'));
@@ -95,7 +96,7 @@ class NewsController extends Controller
         $news = News::where('id', $id)->where('delete_flg', 0)->first();
 
         if (!$news) {
-            return redirect()->route('adminNewsIndex')->with('error', 'お知らせが存在しません。');
+            return redirect()->route('adminIndex')->with('error', 'お知らせが存在しません。');
         }
 
         session(['updateInputNews' => $input, 'updateNews' => $input]);
@@ -112,7 +113,7 @@ class NewsController extends Controller
 
         $news = News::where('id', $id)->where('delete_flg', 0)->first();
         if (!$news) {
-            return redirect()->route('adminNewsIndex')->with('error', 'お知らせが存在しません。');
+            return redirect()->route('adminIndex')->with('error', 'お知らせが存在しません。');
         }
 
         $request->session()->regenerateToken();
@@ -144,7 +145,7 @@ class NewsController extends Controller
         $news = News::where('id', $id)->first();
 
         if (!$news) {
-            return redirect()->route('adminNewsIndex')->with('error', 'お知らせが存在しません。');
+            return redirect()->route('adminIndex')->with('error', 'お知らせが存在しません。');
         }
 
         return view('admin/news/edit/complete', compact('news'));
@@ -157,7 +158,7 @@ class NewsController extends Controller
         $news = News::where('id', $id)->first();
 
         if (!$news) {
-            return redirect()->route('adminNewsIndex')->with('error', 'お知らせが存在しません。');
+            return redirect()->route('adminIndex')->with('error', 'お知らせが存在しません。');
         }
 
         try {
@@ -170,14 +171,14 @@ class NewsController extends Controller
         } catch (QueryException $e) {
             DB::rollBack();
             Log::error("ERROR: News Delete Failed", ['error' => $e->getMessage()]);
-            return redirect()->route('adminNewsIndex')->with('error', '削除に失敗しました。');
+            return redirect()->route('adminIndex')->with('error', '削除に失敗しました。');
         } catch (\Throwable $e) {
             DB::rollBack();
             Log::error("ERROR: Unexpected News Delete Error", ['error' => $e->getMessage()]);
-            return redirect()->route('adminNewsIndex')->with('error', '削除に失敗しました。');
+            return redirect()->route('adminIndex')->with('error', '削除に失敗しました。');
         }
 
-        return redirect()->route('adminNewsIndex')->with('success', 'お知らせを削除しました。');
+        return redirect()->route('adminIndex')->with('success', 'お知らせを削除しました。');
     }
 
     // お知らせ詳細
@@ -186,7 +187,7 @@ class NewsController extends Controller
         $news = News::where('id', $id)->where('delete_flg', 0)->first();
 
         if (!$news) {
-            return redirect()->route('adminNewsIndex')->with('error', 'お知らせが存在しません。');
+            return redirect()->route('adminIndex')->with('error', 'お知らせが存在しません。');
         }
 
         return view('admin/news/show', compact('news'));

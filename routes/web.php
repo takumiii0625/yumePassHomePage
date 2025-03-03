@@ -6,7 +6,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Admin\StoreController as AdminStoreController;
 use App\Http\Controllers\StoreController as FrontendStoreController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
-use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\NewsController as FrontendNewsController;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -31,7 +31,7 @@ Route::post('/contact/thanks', [ContactController::class, 'send'])->name('send')
 
 Route::get('/dashboard', function () {
     // ダッシュボードにアクセスした際に、admin.stores.index へリダイレクト
-    return redirect()->route('adminStoreControllerIndex');
+    return redirect()->route('adminIndex');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
@@ -65,7 +65,7 @@ Route::get('/tokuteisyoutorihiki', function () {
 Route::get('/stores', [FrontendStoreController::class, 'showStores']);
 
 // 店舗一覧
-Route::get('admin/stores', [AdminStoreController::class, 'index'])->name('adminStoreControllerIndex');
+Route::get('/admin', [AdminStoreController::class, 'index'])->name('adminIndex');
 
 //店舗詳細ページ
 Route::get('admin/stores/{id}', [AdminStoreController::class, 'show'])->name('adminStoreControllerShow');
@@ -94,19 +94,20 @@ Route::get('/admin/stores/{id}', [AdminStoreController::class, 'show'])->name('a
 
 
 // お知らせ一覧
-Route::get('/admin/store', [AdminNewsController::class, 'index'])->name('adminNewsIndex');
+Route::get('/news', [FrontendNewsController::class, 'index'])->name('newsIndex');
+Route::get('/news/{id}', [FrontendNewsController::class, 'show'])->name('newsShow');
 
 // お知らせ詳細ページ
 Route::get('/admin/news/{id}', [AdminNewsController::class, 'show'])->name('adminNewsShow');
 
 // お知らせ登録(入力)
-Route::get('/admin/news/create/input', [NewsController::class, 'createInput'])->name('adminNewsCreateInput');
+Route::get('/admin/news/create/input', [AdminNewsController::class, 'createInput'])->name('adminNewsCreateInput');
 // お知らせ登録(確認)
-Route::post('/admin/news/create/confirm', [NewsController::class, 'createConfirm'])->name('adminNewsCreateConfirm');
+Route::post('/admin/news/create/confirm', [AdminNewsController::class, 'createConfirm'])->name('adminNewsCreateConfirm');
 // お知らせ登録(処理)
-Route::post('/admin/news/create/execute', [NewsController::class, 'createExecute'])->name('adminNewsCreateExecute');
+Route::post('/admin/news/create/execute', [AdminNewsController::class, 'createExecute'])->name('adminNewsCreateExecute');
 // お知らせ登録(完了)
-Route::get('/admin/news/create/complete', [NewsController::class, 'createComplete'])->name('adminNewsCreateComplete');
+Route::get('/admin/news/create/complete', [AdminNewsController::class, 'createComplete'])->name('adminNewsCreateComplete');
 
 
 // お知らせ編集(入力)

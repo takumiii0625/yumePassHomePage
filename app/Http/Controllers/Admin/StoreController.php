@@ -22,7 +22,7 @@ class StoreController extends Controller
         $stores = Store::where('delete_flg', 0)->paginate(10);
         $news = News::where('delete_flg', 0)->orderBy('published_at', 'desc')->paginate(10);
 
-        return view('admin/stores/index', compact('stores', 'news'));
+        return view('admin/index', compact('stores', 'news'));
     }
 
     // 店舗登録(入力)
@@ -93,7 +93,7 @@ class StoreController extends Controller
 
         // 店舗が存在しない場合はリダイレクト
         if (!$store) {
-            return redirect()->route('adminStoreControllerIndex', session('adminStoreIndexSearchParams'))
+            return redirect()->route('adminIndex', session('adminStoreIndexSearchParams'))
                 ->with('error', '店舗が存在しません。');
         }
 
@@ -115,7 +115,7 @@ class StoreController extends Controller
 
         // 店舗が存在しない場合はリダイレクト
         if (!$store) {
-            return redirect()->route('adminStoreControllerIndex', session('adminStoreIndexSearchParams'))
+            return redirect()->route('adminIndex', session('adminStoreIndexSearchParams'))
                 ->with('error', '店舗が存在しません。');
         }
 
@@ -152,7 +152,7 @@ class StoreController extends Controller
 
         // 店舗が存在しない場合はリダイレクト
         if (!$store) {
-            return redirect()->route('adminStoreControllerIndex')
+            return redirect()->route('adminIndex')
                 ->with('error', '店舗が存在しません。');
         }
 
@@ -224,7 +224,7 @@ class StoreController extends Controller
 
             // 店舗が存在しない場合はリダイレクト
             if (!$store) {
-                return redirect()->route('adminStoreControllerIndex')->with('error', '店舗が存在しません。');
+                return redirect()->route('adminIndex')->with('error', '店舗が存在しません。');
             }
 
             try {
@@ -242,17 +242,17 @@ class StoreController extends Controller
                 $params = implode(', ', $e->getBindings());
                 Log::error('ERROR'.__METHOD__.'#'.__LINE__."\nSQL: {$e->getSql()}\nParams: {$params}\n{$e}\n\n");
 
-                return redirect()->route('adminStoreControllerIndex')
+                return redirect()->route('adminIndex')
                     ->with('error', 'データベースエラーが発生しました。時間をおいて再度お試しください。');
             } catch (\Throwable $e) {
                 DB::rollBack();
                 Log::error('ERROR'.__METHOD__.'#'.__LINE__." >>> {$e}\n\n");
 
-                return redirect()->route('adminStoreControllerIndex')
+                return redirect()->route('adminIndex')
                     ->with('error', '予期せぬエラーが発生しました。時間をおいて再度お試しください。');
             }
 
-            return redirect()->route('adminStoreControllerIndex')->with('success', '店舗を削除しました。');
+            return redirect()->route('adminIndex')->with('success', '店舗を削除しました。');
         }
 
 
@@ -270,7 +270,7 @@ class StoreController extends Controller
 
             // 店舗が存在しない場合はリダイレクト
             if (!$store) {
-                return redirect()->route('adminStoreControllerIndex')->with('error', '店舗が存在しません。');
+                return redirect()->route('adminIndex')->with('error', '店舗が存在しません。');
             }
 
             return view('admin/stores/show', compact('store'));

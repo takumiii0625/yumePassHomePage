@@ -17,4 +17,7 @@ class News extends Model
         'published_at',
         'delete_flg'
     ];
+    protected $casts = [
+        'published_at' => 'datetime',
+    ];
 }

@@ -9,6 +9,6 @@
     </div>
 
     <div class="mt-4">
-        <a href="{{ route('adminStoreControllerIndex') }}" class="w-full bg-teal-600 text-white py-2 px-4 rounded-lg hover:bg-teal-700 transition duration-300">店舗一覧に戻る</a>
+        <a href="{{ route('adminIndex') }}" class="w-full bg-teal-600 text-white py-2 px-4 rounded-lg hover:bg-teal-700 transition duration-300">店舗一覧に戻る</a>
     </div>
 @endsection
