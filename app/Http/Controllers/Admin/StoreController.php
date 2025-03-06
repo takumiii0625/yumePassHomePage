@@ -12,19 +12,17 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\QueryException;
+use App\Models\News;
 use Carbon\Carbon;
 class StoreController extends Controller
 {
     // 店舗一覧の表示
     public function index()
     {
-        // すべての店舗を取得（ページネーション）
-        $stores = DB::table('stores')
-        ->where('delete_flg', 0)
-        ->paginate(10); // 必要に応じてページごとの店舗数を変更
+        $stores = Store::where('delete_flg', 0)->paginate(10);
+        $news = News::where('delete_flg', 0)->orderBy('published_at', 'desc')->paginate(10);
 
-        // ビューに店舗データを渡す
-        return view('admin/stores/index', compact('stores'));
+        return view('admin/index', compact('stores', 'news'));
     }
 
     // 店舗登録(入力)
@@ -95,7 +93,7 @@ class StoreController extends Controller
 
         // 店舗が存在しない場合はリダイレクト
         if (!$store) {
-            return redirect()->route('adminStoreControllerIndex', session('adminStoreIndexSearchParams'))
+            return redirect()->route('adminIndex', session('adminStoreIndexSearchParams'))
                 ->with('error', '店舗が存在しません。');
         }
 
@@ -117,7 +115,7 @@ class StoreController extends Controller
 
         // 店舗が存在しない場合はリダイレクト
         if (!$store) {
-            return redirect()->route('adminStoreControllerIndex', session('adminStoreIndexSearchParams'))
+            return redirect()->route('adminIndex', session('adminStoreIndexSearchParams'))
                 ->with('error', '店舗が存在しません。');
         }
 
@@ -154,7 +152,7 @@ class StoreController extends Controller
 
         // 店舗が存在しない場合はリダイレクト
         if (!$store) {
-            return redirect()->route('adminStoreControllerIndex')
+            return redirect()->route('adminIndex')
                 ->with('error', '店舗が存在しません。');
         }
 
@@ -226,7 +224,7 @@ class StoreController extends Controller
 
             // 店舗が存在しない場合はリダイレクト
             if (!$store) {
-                return redirect()->route('adminStoreControllerIndex')->with('error', '店舗が存在しません。');
+                return redirect()->route('adminIndex')->with('error', '店舗が存在しません。');
             }
 
             try {
@@ -244,17 +242,17 @@ class StoreController extends Controller
                 $params = implode(', ', $e->getBindings());
                 Log::error('ERROR'.__METHOD__.'#'.__LINE__."\nSQL: {$e->getSql()}\nParams: {$params}\n{$e}\n\n");
 
-                return redirect()->route('adminStoreControllerIndex')
+                return redirect()->route('adminIndex')
                     ->with('error', 'データベースエラーが発生しました。時間をおいて再度お試しください。');
             } catch (\Throwable $e) {
                 DB::rollBack();
                 Log::error('ERROR'.__METHOD__.'#'.__LINE__." >>> {$e}\n\n");
 
-                return redirect()->route('adminStoreControllerIndex')
+                return redirect()->route('adminIndex')
                     ->with('error', '予期せぬエラーが発生しました。時間をおいて再度お試しください。');
             }
 
-            return redirect()->route('adminStoreControllerIndex')->with('success', '店舗を削除しました。');
+            return redirect()->route('adminIndex')->with('success', '店舗を削除しました。');
         }
 
 
@@ -272,7 +270,7 @@ class StoreController extends Controller
 
             // 店舗が存在しない場合はリダイレクト
             if (!$store) {
-                return redirect()->route('adminStoreControllerIndex')->with('error', '店舗が存在しません。');
+                return redirect()->route('adminIndex')->with('error', '店舗が存在しません。');
             }
 
             return view('admin/stores/show', compact('store'));
@@ -280,67 +278,3 @@ class StoreController extends Controller
 
 }
 
-
-//     //
-//     // 新しい店舗を保存
-    // public function store(CreateRequest $request)
-    // {
-    //     // 画像の処理
-    //     if ($request->hasFile('image')) {
-    //         $imagePath = $request->file('image')->store('public/store_images');
-    //     }
-
-//         // バリデーションは CreateRequest で処理されるので不要
-//         // バリデーションが通ったデータを使って新しい店舗を保存
-//         Store::create($request->validated());
-
-//         return redirect()->route('admin.stores.index')->with('success', '店舗が追加されました');
-//     }
-
-//     // 店舗編集フォームを表示
-//     public function edit(Store $store)
-//     {
-//         return view('admin.stores.edit', compact('store'));
-//     }
-
-//     // 店舗情報を更新
-//     public function update(CreateRequest $request, Store $store)
-//     {
-//         // 画像の処理
-//         if ($request->hasFile('image')) {
-//             // 既存の画像があれば削除
-//             if ($store->image) {
-//                 Storage::delete('public/store_images/' . $store->image);
-//             }
-//             $imagePath = $request->file('image')->store('public/store_images');
-//             $store->image = str_replace('public/', '', $imagePath);
-//         }
-
-//         // バリデーションは CreateRequest で処理されるので不要
-//         // バリデーションが通ったデータを使って店舗情報を更新
-//         $store->update($request->validated());
-
-//         return redirect()->route('admin.stores.index')->with('success', '店舗情報が更新されました');
-//     }
-
-//     // 店舗削除
-//     public function destroy(Store $store)
-//     {
-
-//         // 画像が存在すれば削除
-//         if ($store->image) {
-//             Storage::delete('public/store_images/' . $store->image);
-//         }
-
-//         $store->delete();
-
-//         return redirect()->route('admin.stores.index')->with('success', '店舗が削除されました');
-//     }
-
-
-//     public function show($id)
-//     {
-//     $store = Store::findOrFail($id);
-//     return view('admin.stores.show', compact('store'));
-//     }
-// }

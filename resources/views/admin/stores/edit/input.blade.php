@@ -105,6 +105,6 @@
 
 <!-- 店舗一覧へ戻るボタン -->
 <div class="mt-4">
-    <a href="{{ route('adminStoreControllerIndex') }}" class="w-full bg-gray-300 text-black py-2 px-4 rounded-lg hover:bg-gray-400 transition duration-300">店舗一覧に戻る</a>
+    <a href="{{ route('adminIndex') }}" class="w-full bg-gray-300 text-black py-2 px-4 rounded-lg hover:bg-gray-400 transition duration-300">店舗一覧に戻る</a>
 </div>
 @endsection
