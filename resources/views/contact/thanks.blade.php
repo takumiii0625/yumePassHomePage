@@ -10,7 +10,7 @@
 
             <div class="p-6">
                 <p class="text-sm text-gray-700">お客様からのお問い合わせを正常に受け付けました。</p>
-                <p class="mt-2 text-sm text-gray-700">担当者が確認後、〇〇営業日以内にご連絡させていただきますので、しばらくお待ちください。</p>
+                <p class="mt-2 text-sm text-gray-700">担当者が確認後、3営業日以内にご連絡させていただきますので、しばらくお待ちください。</p>
             </div>
         </div>
     </div>

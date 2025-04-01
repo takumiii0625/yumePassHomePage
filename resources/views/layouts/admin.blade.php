@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <title>店舗パス - @yield('title')</title>
+    <title>ストパス（Store-Pass） - @yield('title')</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
@@ -47,7 +47,6 @@
     <!-- フッター -->
     <footer class="bg-gray-800 text-white py-6 mt-16">
         <div class="max-w-7xl mx-auto px-4 text-center">
-            <p class="mb-4 text-lg">夢パス - あなたの食生活をサポートします。</p>
             <nav>
                 <ul class="flex justify-center space-x-8 text-lg">
                     <li><a href="{{ url('/user-agreement') }}" class="hover:text-gray-400 transition duration-300">利用規約</a></li>
@@ -55,7 +54,7 @@
                     <li><a href="{{ url('/tokuteisyoutorihiki') }}" class="hover:text-gray-400 transition duration-300">特商法取引</a></li>
                 </ul>
             </nav>
-            <p class="text-gray-400 text-sm mt-4">© 2025 夢パス. All Rights Reserved.</p>
+            <p class="text-gray-400 text-sm mt-4">Copyright © OBFall Co.LTD. All Rights Reserved.</p>
         </div>
     </footer>
 

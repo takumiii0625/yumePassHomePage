@@ -12,6 +12,15 @@
                 <form method="POST" action="{{ route('confirm') }}">
                     @csrf
                     <div class="mb-6">
+                        <label for="name" class="block text-sm font-medium text-gray-700">お名前</label>
+                        <div class="mt-1">
+                            <input id="name" type="text" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 @error('name') border-red-500 @enderror" name="name" value="{{ old('name') }}">
+                        </div>
+                        @error('name')
+                            <span class="text-red-500 text-sm mt-1">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="mb-6">
                         <label for="email" class="block text-sm font-medium text-gray-700">メールアドレス</label>
                         <div class="mt-1">
                             <input id="email" type="email" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 @error('email') border-red-500 @enderror" name="email" value="{{ old('email') }}" autofocus>

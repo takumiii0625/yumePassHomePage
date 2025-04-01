@@ -8,7 +8,7 @@ use App\Http\Controllers\StoreController as FrontendStoreController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\NewsController as FrontendNewsController;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Http\Request;
 
 // トップページ
 // Route::get('/', function () {
@@ -131,3 +131,26 @@ Route::post('/logout', function () {
 
 
 require __DIR__.'/auth.php';
+
+
+// 認証フォーム表示
+Route::get('/register-auth', function () {
+    return view('auth.register-auth');
+})->name('register.auth');
+
+// 認証パスワードのチェック処理
+Route::post('/register-auth', function (Request $request) {
+    if ($request->input('access_password') === env('REGISTER_PAGE_PASSWORD')) {
+        session(['register_access_granted' => true]);
+        return redirect()->route('register');
+    }
+    return back()->withErrors(['access_password' => 'パスワードが違います']);
+});
+
+// 実際の登録ページ（パスワード通過済みじゃないと弾く）
+Route::get('/register', function () {
+    if (!session('register_access_granted')) {
+        return redirect()->route('register.auth');
+    }
+    return view('auth.register'); // register.blade.php の場所
+})->name('register');

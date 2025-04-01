@@ -46,7 +46,9 @@
 
             <div>
                 <label for="image" class="block text-lg font-medium text-gray-700">画像</label>
-
+                @if ($store['image'])
+                    <img src="{{ asset($store['image']) }}" alt="アップロード画像" class="w-40 rounded mb-4">
+                @endif
             </div>
 
             <div class="mt-4">
