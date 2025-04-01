@@ -34,11 +34,26 @@ class StoreController extends Controller
     // 店舗登録(確認)
     public function createConfirm(CreateRequest $request)
     {
-        $insert = $request->validated();
-        $store = $insert;
-        session(['insertStore' => $insert]);
+        $validated = $request->validated();
 
-        return view('admin/stores/create/confirm', compact('store'));
+        // 画像処理
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = uniqid() . '.' . $image->getClientOriginalExtension();
+            $tempPath = 'tmp_images/' . $filename;
+
+            // 一時フォルダに保存
+            $image->move(public_path('tmp_images'), $filename);
+
+            // パスを保存
+            $validated['image'] = $tempPath;
+        } else {
+            $validated['image'] = null;
+        }
+
+        session(['insertStore' => $validated]);
+
+        return view('admin/stores/create/confirm', ['store' => $validated]);
     }
 
     // 店舗登録(処理)
@@ -51,6 +66,24 @@ class StoreController extends Controller
         $request->session()->regenerateToken();
         // insert用入力値
         $insert = session('insertStore');
+
+        // 画像が一時保存されている場合 → 本保存に移動
+        if (!empty($insert['image'])) {
+            $tmpPath = public_path($insert['image']); // tmp_images/xxx.jpg
+            $filename = basename($insert['image']);
+            $finalPath = 'images/' . $filename;
+
+            if (file_exists($tmpPath)) {
+                // tmp → images へ移動
+                rename($tmpPath, public_path($finalPath));
+                $insert['image'] = $finalPath; // 保存先パスに更新
+            } else {
+                // 一時ファイルがない場合はnullにする
+                $insert['image'] = null;
+            }
+        } else {
+            $insert['image'] = null;
+        }
 
         try {
             DB::beginTransaction();

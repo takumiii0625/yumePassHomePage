@@ -1,78 +1,85 @@
 @extends('layouts.app')
 
-@section('title', '店舗パス')
+@section('title', 'ストパス（Store-Pass）')
 
 @section('content')
 
-    <!-- 店舗パス紹介セクション -->
-    <div class="py-16 bg-gray-100 text-center text-gray-800">
-        <div class="max-w-4xl mx-auto px-6">
-            <p class="text-lg sm:text-xl text-gray-600 mb-6 leading-relaxed">
-                常連さんがなかなかできない、リピーターを増やしていきたい、、<br>
-                そんなお悩みはありませんか？
-            </p>
-            <p class="text-2xl sm:text-3xl font-semibold text-gray-800 mb-6 leading-relaxed">
-                お店にまた来たくなるサービス<br>
-                <span class="text-teal-600">「店舗パス」</span> を導入してみませんか？
-            </p>
-            <div class="mt-8 p-8 bg-white shadow-lg rounded-xl border border-gray-300">
-                <h3 class="text-2xl font-semibold text-teal-700 mb-4">店舗パスとは</h3>
-                <p class="text-lg text-gray-700 leading-relaxed">
-                    店舗パスは、お店に来れば来るほどお得になる常連さん向けのサービスです。<br>
-                    500円のサブスクリプションで、対象店舗に訪れるたびにその店舗の特別なサービスを受けることができます。
+    <!-- ストパス紹介セクション-->
+    <div class="py-16 bg-gray-100 text-gray-800">
+        <div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center gap-10">
+
+            <!-- ロゴ画像 -->
+            <div class="flex-shrink-0">
+                <img src="{{ asset('images/store-pass_logo.png') }}" alt="Store-Passロゴ" class="w-48 h-48">
+            </div>
+
+            <!-- 説明文 -->
+            <div class="text-center md:text-left">
+            <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">ストパス（Store-Pass）</h2>
+
+                <p class="text-lg sm:text-xl text-gray-600 mb-2 leading-relaxed">
+                    お店に来れば来るほどお得になる<br>
+                    加盟店全店舗で使えるアプリです。
                 </p>
-                <p class="text-lg text-gray-700 mt-4 leading-relaxed">
-                    今日のお店が決まっていない、毎回お店選びに悩んでいる、<br>
-                    そんなお客様に対して、店舗パスを導入することでメリットを提示し、<br>
-                    お店のリピーターへとつなげることが可能です。
+                <p class="text-lg text-gray-700 leading-relaxed mt-4">
+                    月額500円のサブスクリプションを購入することで、<br>
+                    店舗の垣根なくアプリ限定のサービスを受けられる仕組みとなっています。
                 </p>
             </div>
+
         </div>
     </div>
 
-    <!-- 導入事例セクション -->
-    <div class="py-16 bg-white text-center text-gray-800">
-        <div class="max-w-6xl mx-auto px-6">
-            <h3 class="text-3xl font-semibold text-teal-700 mb-8">導入事例</h3>
+<!-- アプリの主な機能紹介セクション-->
+<div class="py-24 bg-white text-gray-800">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="text-3xl sm:text-4xl font-bold text-center text-gray-900 mb-16">アプリの主な機能</h2>
 
-            <p class="text-lg text-gray-700 mb-6 leading-relaxed">
-                店舗名を入れたアプリ名にすることができるため、お客様へ浸透させることができます。<br>
-                また、基本機能に加えたカスタマイズも可能なため、店舗独自のアプリとして使用可能です。
-            </p>
+    <div class="grid sm:grid-cols-2 gap-10">
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                @foreach (['肉横丁' => '肉横パス', '夢' => '夢パス', '〇〇' => '〇〇パス'] as $name => $pass)
-                    <div class="bg-gray-100 p-6 shadow-md rounded-xl border border-gray-300 hover:scale-105 transition-all duration-300">
-                        <p class="text-lg sm:text-xl font-semibold text-gray-800 mb-2">{{ $name }}</p>
-                        <p class="text-lg text-gray-600 mb-4">{{ $pass }}</p>
-                        <img src="path_to_image" alt="{{ $name }}の導入事例" class="w-full h-40 object-cover rounded-lg shadow-md">
-                    </div>
-                @endforeach
-            </div>
-
-            <p class="text-lg text-gray-700 mt-12">詳細については、お気軽にお問い合わせフォームよりご相談ください。</p>
-
-            <div class="mt-6">
-                <a href="{{ url('/contact') }}" class="bg-teal-600 text-white py-3 px-8 rounded-lg text-lg font-semibold shadow-md transition-all duration-300 hover:bg-teal-700 hover:scale-105">
-                    お問い合わせフォーム
-                </a>
-            </div>
+      <!-- 店舗一覧・詳細画面 -->
+      <div class="bg-gray-100 p-8 rounded-2xl shadow-md border border-gray-200 flex flex-col justify-between items-center text-center transition-transform duration-300 hover:scale-105 sm:col-span-2">
+        <div class="flex gap-4 mb-6 flex-wrap justify-center">
+            <img src="{{ asset('images/tenpoitiran_1.png') }}" alt="店舗一覧1" class="w-72 h-72 object-contain">
+            <img src="{{ asset('images/tenpoitiran_2.png') }}" alt="店舗一覧2" class="w-72 h-72 object-contain">
         </div>
+        <h3 class="text-2xl font-bold mb-4 text-gray-900">店舗一覧・詳細画面</h3>
+        <p class="text-base leading-relaxed text-gray-700 mb-3">アプリ加盟店が一覧で表示されます。会員様は店舗の垣根なく特典が利用でき、他店舗でも追加料金なしでアプリ限定特典を受けることができます。</p>
+        <p class="text-base leading-relaxed text-gray-700">詳細画面には外部リンク、予約機能、SNS、レビューなどが充実しています。</p>
+      </div>
+
+      <!-- 会員特典画面 -->
+      <div class="bg-gray-100 p-8 rounded-2xl shadow-md border border-gray-200 flex flex-col justify-between items-center text-center transition-transform duration-300 hover:scale-105">
+        <img src="{{ asset('images/kaiintokuten.png') }}" alt="会員特典" class="w-64 h-64 object-contain mb-6">
+        <h3 class="text-2xl font-bold mb-4 text-gray-900">会員特典画面</h3>
+        <p class="text-base leading-relaxed text-gray-700 mb-3">選択店舗ごとの限定サービスが表示されます。<br>会員ランクに応じて特典もグレードアップ。</p>
+        <p class="text-base leading-relaxed text-gray-700">初回特典は全店舗で1回ずつ利用可能で、他にはない破格のサービスも。</p>
+      </div>
+
+      <!-- 会員証の画面 -->
+      <div class="bg-gray-100 p-8 rounded-2xl shadow-md border border-gray-200 flex flex-col justify-between items-center text-center transition-transform duration-300 hover:scale-105">
+        <img src="{{ asset('images/kaiinsyo.png') }}" alt="会員証" class="w-64 h-64 object-contain mb-6">
+        <h3 class="text-2xl font-bold mb-4 text-gray-900">会員証の画面</h3>
+        <p class="text-base leading-relaxed text-gray-700 mb-3">限定サービスを受けるには、こちらの会員証を提示するだけ。</p>
+        <p class="text-base leading-relaxed text-gray-700">継続期間に応じて会員証のランクが上がり、<br>ブラック会員では驚きの特典も…！</p>
+      </div>
     </div>
+  </div>
+</div>
 
     <!-- サブスクが使えるお店一覧 -->
     <div class="py-16 bg-gray-100 text-center text-gray-800">
         <div class="max-w-6xl mx-auto px-6">
-            <h3 class="text-3xl font-semibold mb-6">店舗パスが使えるお店</h3>
+            <h3 class="text-3xl font-semibold mb-6">ストパス（Store-Pass）が使えるお店</h3>
             <p class="text-lg mb-8 text-gray-700">以下の店舗でサブスクリプション特典を利用できます！</p>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 @foreach ($stores as $store)
                     @if ($store->delete_flg != 1)
-                        <div class="bg-white p-6 rounded-lg shadow-xl text-gray-900">
+                        <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 text-gray-900">
                             <!-- 画像 -->
                             @if ($store->image)
-                                <img src="{{ asset('storage/' . $store->image) }}" alt="{{ $store->name }}" class="w-full h-40 object-cover rounded-lg mb-4">
+                            <img src="{{ asset($store->image) }}" alt="{{ $store->name }}" class="w-full h-40 object-cover rounded-lg mb-4">
                             @else
                                 <div class="w-full h-40 bg-gray-300 rounded-lg flex items-center justify-center text-gray-600">
                                     画像なし
@@ -104,20 +111,73 @@
         </div>
     </div>
 
-    <!-- ヒーローセクション -->
-    <div class="bg-gradient-to-r from-teal-600 via-teal-500 to-teal-400 text-white py-32 sm:py-40">
-        <div class="max-w-5xl mx-auto text-center px-6">
-            <h1 class="text-4xl sm:text-5xl font-semibold mb-4 text-white leading-tight">あなたの好きな料理がすぐに見つかる！</h1>
-            <p class="text-lg sm:text-2xl mb-8 text-gray-100">アプリをインストールして、サブスクリプション特典を楽しもう！</p>
-            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-8">
-                <a href="https://apps.apple.com" class="bg-white text-gray-900 py-3 px-8 rounded-lg text-lg font-semibold shadow-md transition-all duration-300 hover:bg-gray-200 hover:scale-105">
-                    iOSでダウンロード
+<!-- ヒーローセクション -->
+<section class="bg-gradient-to-r from-gray-100 to-gray-300 text-gray-900 py-16">
+    <div class="max-w-7xl mx-auto px-6 sm:px-10 flex flex-col lg:flex-row items-center justify-between gap-10">
+
+        <!-- 左側：テキストエリア -->
+        <div class="lg:w-1/2 w-full flex flex-col justify-center self-center text-left">
+            <div class="pl-0 sm:pl-16">
+                <h2 class="text-2xl sm:text-4xl font-bold mb-6 leading-snug">
+                    利用すればするほどお得になる<br>店舗アプリ
+                </h2>
+
+                <ul class="flex flex-col space-y-2 text-base sm:text-xl mb-8 text-gray-800">
+                    <li class="flex items-start">
+                        <span class="text-teal-600 mr-2">✔︎</span>
+                        <span>当日から使える限定特典</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-teal-600 mr-2">✔︎</span>
+                        <span>サブスクリプションで使い放題</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-teal-600 mr-2">✔︎</span>
+                        <span>店舗の情報を逃さずチェック</span>
+                    </li>
+                </ul>
+            </div>
+
+
+
+            <!-- ダウンロードボタン -->
+            <div class="flex flex-row justify-start items-center space-x-4 pl-0 sm:pl-16">
+                <!-- App Store -->
+                <a
+                    href="https://apps.apple.com/jp/app/%E3%82%B9%E3%83%88%E3%83%91%E3%82%B9-store-pass/id6740623829"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <img
+                        src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ja-jp?size=250x83"
+                        alt="App Storeからダウンロード"
+                        class="h-16 sm:h-20 transition-transform duration-300 hover:scale-105"
+                    />
                 </a>
-                <a href="https://play.google.com" class="bg-white text-gray-900 py-3 px-8 rounded-lg text-lg font-semibold shadow-md transition-all duration-300 hover:bg-gray-200 hover:scale-105">
-                    Androidでダウンロード
+
+                <!-- Google Play -->
+                <a
+                    href="https://play.google.com/store/apps/details?id=com.obfall.yumepass&hl=ja"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <img
+                        src="https://play.google.com/intl/ja/badges/static/images/badges/ja_badge_web_generic.png"
+                        alt="Google Playで手に入れよう"
+                        class="h-16 sm:h-24 transition-transform duration-300 hover:scale-105"
+                    />
                 </a>
             </div>
         </div>
+
+        <!-- 右側：画像 -->
+        <div class="lg:w-1/2 w-full flex justify-center mt-10 lg:mt-0">
+            <img src="/images/store-pass_logo.png" alt="アプリ画面" class="w-64 sm:w-[360px] drop-shadow-xl">
+        </div>
     </div>
+</section>
+
+
+
 
 @endsection

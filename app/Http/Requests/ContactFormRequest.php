@@ -24,6 +24,7 @@ class ContactFormRequest extends FormRequest
     public function rules()
     {
         return [
+            'name' => 'required|string|max:255',
             'email' => 'required|email',
             'contact' => 'required',
         ];
@@ -37,6 +38,7 @@ class ContactFormRequest extends FormRequest
     public function messages()
     {
         return [
+            'name.required' => 'お名前は必須です。',
             'email.required' => 'メールアドレスは必須です。',
             'email.email' => '正しいメールアドレスを入力してください。',
             'contact.required' => 'お問い合わせ内容は必須です。',

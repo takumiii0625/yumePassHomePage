@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>店舗パス</title>
+    <title>ストパス（Store-Pass）</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -14,9 +14,13 @@
     <!-- ヘッダー -->
     <header class="sticky top-0 left-0 w-full bg-white text-black py-4 shadow-lg z-50">
         <div class="max-w-7xl mx-auto px-4 flex justify-between items-center">
-            <!-- ロゴ -->
-            <a href="{{ url('/') }}" class="text-2xl sm:text-4xl font-extrabold hover:text-gray-600 transition duration-300">
-                店舗パス
+
+            <!-- ロゴ（画像＋テキスト） -->
+            <a href="{{ url('/') }}" class="flex items-center space-x-2 hover:text-gray-600 transition duration-300">
+                <img src="{{ asset('images/store-pass_logo.png') }}" alt="Store-Pass ロゴ" class="w-10 h-10 object-contain">
+                <span class="text-2xl sm:text-4xl font-extrabold">
+                    ストパス（Store-Pass）
+                </span>
             </a>
 
             <!-- ハンバーガーメニュー（スマホ用） -->
@@ -57,19 +61,33 @@
     <!-- フッター -->
     <footer class="bg-gray-800 text-white py-6 mt-16">
         <div class="max-w-7xl mx-auto px-4 text-center">
-            <p class="mb-4 text-lg">店舗パス - あなたの食生活をサポートします。</p>
-            
             <!-- ナビゲーション -->
             <nav>
                 <ul class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-8 text-lg">
-                    <li><a href="{{ url('/') }}" class="hover:text-gray-400 transition duration-300">会社概要</a></li>
-                    <li><a href="{{ url('/user-agreement') }}" class="hover:text-gray-400 transition duration-300">利用規約</a></li>
-                    <li><a href="{{ url('/privacypolicy') }}" class="hover:text-gray-400 transition duration-300">プライバシーポリシー</a></li>
-                    <li><a href="{{ url('/tokuteisyoutorihiki') }}" class="hover:text-gray-400 transition duration-300">特商法取引</a></li>
+                    <li>
+                        <a href="https://obfall.com" target="_blank" rel="noopener noreferrer" class="hover:text-gray-400 transition duration-300">
+                            会社概要
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url('/user-agreement') }}" target="_blank" rel="noopener noreferrer" class="hover:text-gray-400 transition duration-300">
+                            利用規約
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url('/privacypolicy') }}" target="_blank" rel="noopener noreferrer" class="hover:text-gray-400 transition duration-300">
+                            プライバシーポリシー
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url('/tokuteisyoutorihiki') }}" target="_blank" rel="noopener noreferrer" class="hover:text-gray-400 transition duration-300">
+                            特商法取引
+                        </a>
+                    </li>
                 </ul>
             </nav>
 
-            <p class="text-gray-400 text-sm mt-4">© 2025 店舗パス. All Rights Reserved.</p>
+            <p class="text-gray-400 text-sm mt-4">Copyright © OBFall Co.LTD. All Rights Reserved.</p>
         </div>
     </footer>
 

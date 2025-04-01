@@ -11,8 +11,16 @@
             <div class="p-6">
                 <form method="POST" action="{{ route('send') }}">
                     @csrf
+                    <input type="hidden" name="name" value="{{ $contact['name'] }}">
                     <input type="hidden" name="email" value="{{ $contact['email'] }}">
                     <input type="hidden" name="contact" value="{{ $contact['contact'] }}">
+
+                    <div class="mb-6">
+                        <label for="name" class="block text-sm font-medium text-gray-700">お名前:</label>
+                        <div class="mt-1 text-gray-900">
+                            {{ $contact['name'] }}
+                        </div>
+                    </div>
 
                     <div class="mb-6">
                         <label for="email" class="block text-sm font-medium text-gray-700">メールアドレス:</label>
@@ -24,7 +32,7 @@
                     <div class="mb-6">
                         <label for="contact" class="block text-sm font-medium text-gray-700">お問い合わせ内容:</label>
                         <div class="mt-1 text-gray-900">
-                            {{ $contact['contact'] }}
+                            {!! nl2br(e($contact['contact'])) !!}
                         </div>
                     </div>
 
