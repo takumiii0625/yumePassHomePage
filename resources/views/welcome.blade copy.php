@@ -57,7 +57,7 @@
     <!-- サブスクが使えるお店一覧 -->
     <div class="py-20 bg-gray-900 text-center text-white">
         <div class="max-w-6xl mx-auto">
-            <h3 class="text-3xl font-semibold mb-6">店舗パスが使えるお店</h3>
+            <h3 class="text-3xl font-semibold mb-6">ストパス（Store-Pass）が使えるお店</h3>
             <p class="text-lg mb-8">以下の店舗で特典を利用できます！</p>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
