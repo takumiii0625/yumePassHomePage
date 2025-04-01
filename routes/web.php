@@ -132,7 +132,6 @@ Route::post('/logout', function () {
 
 require __DIR__.'/auth.php';
 
-
 // 認証フォーム表示
 Route::get('/register-auth', function () {
     return view('auth.register-auth');
