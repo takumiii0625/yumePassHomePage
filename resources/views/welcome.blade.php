@@ -10,7 +10,7 @@
 
             <!-- ロゴ画像 -->
             <div class="flex-shrink-0">
-                <img src="{{ asset('images/store-pass_logo.png') }}" alt="Store-Passロゴ" class="w-48 h-48">
+                <img src="{{ asset('images/store-pass_logo.png') }}" alt="Store-Passロゴ" class="w-48 h-48 rounded-xl">
             </div>
 
             <!-- 説明文 -->
@@ -22,8 +22,8 @@
                     加盟店全店舗で使えるアプリです。
                 </p>
                 <p class="text-lg text-gray-700 leading-relaxed mt-4">
-                    月額500円のサブスクリプションを購入することで、<br>
-                    店舗の垣根なくアプリ限定のサービスを受けられる仕組みとなっています。
+                    月額500円のサブスクリプションを<br class="block sm:hidden">購入することで、<br>
+                    店舗の垣根なくアプリ限定のサービスを<br class="block sm:hidden">受けられる仕組みとなっています。
                 </p>
             </div>
 
@@ -44,24 +44,24 @@
             <img src="{{ asset('images/tenpoitiran_2.png') }}" alt="店舗一覧2" class="w-72 h-72 object-contain">
         </div>
         <h3 class="text-2xl font-bold mb-4 text-gray-900">店舗一覧・詳細画面</h3>
-        <p class="text-base leading-relaxed text-gray-700 mb-3">アプリ加盟店が一覧で表示されます。会員様は店舗の垣根なく特典が利用でき、他店舗でも追加料金なしでアプリ限定特典を受けることができます。</p>
-        <p class="text-base leading-relaxed text-gray-700">詳細画面には外部リンク、予約機能、SNS、レビューなどが充実しています。</p>
+        <p class="text-base leading-relaxed text-gray-700 mb-3">アプリ加盟店が一覧で<br class="block sm:hidden">表示されます。<br class="block sm:hidden">会員様は店舗の垣根なく<br class="block sm:hidden">特典が利用でき、<br class="block sm:hidden">他店舗でも追加料金なしで<br class="block sm:hidden">アプリ限定特典を<br class="block sm:hidden">受けることができます。</p>
+        <p class="text-base leading-relaxed text-gray-700">詳細画面には外部リンク、<br class="block sm:hidden">予約機能、SNS、レビューなどが<br class="block sm:hidden">充実しています。</p>
       </div>
 
       <!-- 会員特典画面 -->
       <div class="bg-gray-100 p-8 rounded-2xl shadow-md border border-gray-200 flex flex-col justify-between items-center text-center transition-transform duration-300 hover:scale-105">
         <img src="{{ asset('images/kaiintokuten.png') }}" alt="会員特典" class="w-64 h-64 object-contain mb-6">
         <h3 class="text-2xl font-bold mb-4 text-gray-900">会員特典画面</h3>
-        <p class="text-base leading-relaxed text-gray-700 mb-3">選択店舗ごとの限定サービスが表示されます。<br>会員ランクに応じて特典もグレードアップ。</p>
-        <p class="text-base leading-relaxed text-gray-700">初回特典は全店舗で1回ずつ利用可能で、他にはない破格のサービスも。</p>
+        <p class="text-base leading-relaxed text-gray-700 mb-3">選択店舗ごとの<br class="block sm:hidden">限定サービスが表示されます。<br>会員ランクに応じて<br class="block sm:hidden">特典もグレードアップ。</p>
+        <p class="text-base leading-relaxed text-gray-700">初回特典は全店舗で<br class="block sm:hidden">1回ずつ利用可能。<br class="block sm:hidden">他にはない破格のサービスも。</p>
       </div>
 
       <!-- 会員証の画面 -->
       <div class="bg-gray-100 p-8 rounded-2xl shadow-md border border-gray-200 flex flex-col justify-between items-center text-center transition-transform duration-300 hover:scale-105">
         <img src="{{ asset('images/kaiinsyo.png') }}" alt="会員証" class="w-64 h-64 object-contain mb-6">
         <h3 class="text-2xl font-bold mb-4 text-gray-900">会員証の画面</h3>
-        <p class="text-base leading-relaxed text-gray-700 mb-3">限定サービスを受けるには、こちらの会員証を提示するだけ。</p>
-        <p class="text-base leading-relaxed text-gray-700">継続期間に応じて会員証のランクが上がり、<br>ブラック会員では驚きの特典も…！</p>
+        <p class="text-base leading-relaxed text-gray-700 mb-3">限定サービスを受けるには、<br class="block sm:hidden">こちらの会員証を提示するだけ。</p>
+        <p class="text-base leading-relaxed text-gray-700">継続期間に応じて<br class="block sm:hidden">会員証のランクが上がり、<br>ブラック会員では驚きの特典も…！</p>
       </div>
     </div>
   </div>
@@ -70,8 +70,8 @@
     <!-- サブスクが使えるお店一覧 -->
     <div class="py-16 bg-gray-100 text-center text-gray-800">
         <div class="max-w-6xl mx-auto px-6">
-            <h3 class="text-3xl font-semibold mb-6">ストパス（Store-Pass）が使えるお店</h3>
-            <p class="text-lg mb-8 text-gray-700">以下の店舗でサブスクリプション特典を利用できます！</p>
+            <h3 class="text-3xl font-semibold mb-6">ストパスが使えるお店</h3>
+            <p class="text-lg mb-8 text-gray-700">以下の店舗でサブスクリプション特典を<br class="block sm:hidden">利用できます！</p>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 @foreach ($stores as $store)
@@ -79,7 +79,7 @@
                         <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 text-gray-900">
                             <!-- 画像 -->
                             @if ($store->image)
-                            <img src="{{ asset($store->image) }}" alt="{{ $store->name }}" class="w-full h-40 object-cover rounded-lg mb-4">
+                            <img src="{{ asset($store->image) }}" alt="{{ $store->name }}" class="object-cover rounded-lg mb-4">
                             @else
                                 <div class="w-full h-40 bg-gray-300 rounded-lg flex items-center justify-center text-gray-600">
                                     画像なし
@@ -100,7 +100,7 @@
                             @if ($store->url)
                                 <p class="mt-4">
                                     <a href="{{ $store->url }}" target="_blank" class="text-blue-600 hover:text-blue-800 transition duration-300">
-                                        店舗のウェブサイト
+                                        店舗詳細
                                     </a>
                                 </p>
                             @endif
@@ -172,7 +172,7 @@
 
         <!-- 右側：画像 -->
         <div class="lg:w-1/2 w-full flex justify-center mt-10 lg:mt-0">
-            <img src="/images/store-pass_logo.png" alt="アプリ画面" class="w-64 sm:w-[360px] drop-shadow-xl">
+            <img src="/images/store-pass_logo.png" alt="アプリ画面" class="w-64 sm:w-[360px] drop-shadow-xl rounded-xl">
         </div>
     </div>
 </section>

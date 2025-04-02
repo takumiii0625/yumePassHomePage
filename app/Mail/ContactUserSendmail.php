@@ -19,7 +19,7 @@ class ContactUserSendmail extends Mailable
     public function build()
     {
         return $this
-            ->from('store-pass@obfall.co.jp', 'お問い合わせ受付')
+            ->from('store-pass@obfall.co.jp', 'ストパス（Store-Pass）カスタマーサポート')
             ->subject('【自動返信】お問い合わせありがとうございます')
             ->view('contact.mail_user')
             ->with([
