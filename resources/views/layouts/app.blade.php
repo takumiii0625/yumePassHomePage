@@ -17,7 +17,7 @@
 
             <!-- ロゴ（画像＋テキスト） -->
             <a href="{{ url('/') }}" class="flex items-center space-x-2 hover:text-gray-600 transition duration-300">
-                <img src="{{ asset('images/store-pass_logo.png') }}" alt="Store-Pass ロゴ" class="w-10 h-10 object-contain">
+                <img src="{{ asset('images/store-pass_logo.png') }}" alt="Store-Pass ロゴ" class="w-10 h-10 object-contain rounded-xl">
                 <span class="text-2xl sm:text-4xl font-extrabold">
                     ストパス（Store-Pass）
                 </span>
