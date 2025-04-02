@@ -116,13 +116,15 @@
     <div class="max-w-7xl mx-auto px-6 sm:px-10 flex flex-col lg:flex-row items-center justify-between gap-10">
 
         <!-- 左側：テキストエリア -->
-        <div class="lg:w-1/2 w-full flex flex-col justify-center self-center text-left">
+        <div class="lg:w-1/2 w-full flex flex-col justify-center self-center text-center sm:text-left">
             <div class="pl-0 sm:pl-16">
                 <h2 class="text-2xl sm:text-4xl font-bold mb-6 leading-snug">
-                    利用すればするほどお得になる<br>店舗アプリ
+                    利用すればするほど<br class="block sm:hidden">
+                    <span class="sm:hidden">お得になる店舗アプリ</span>
+                    <span class="hidden sm:inline">お得になる<br>店舗アプリ</span>
                 </h2>
 
-                <ul class="flex flex-col space-y-2 text-base sm:text-xl mb-8 text-gray-800">
+                <ul class="flex flex-col space-y-2 text-base sm:text-xl mb-8 text-gray-800 pl-12 sm:pl-0">
                     <li class="flex items-start">
                         <span class="text-teal-600 mr-2">✔︎</span>
                         <span>当日から使える限定特典</span>
@@ -136,37 +138,35 @@
                         <span>店舗の情報を逃さずチェック</span>
                     </li>
                 </ul>
-            </div>
 
+                <!-- ダウンロードボタン -->
+                <div class="flex flex-row justify-center sm:justify-start items-center space-x-4">
+                    <!-- App Store -->
+                    <a
+                        href="https://apps.apple.com/jp/app/%E3%82%B9%E3%83%88%E3%83%91%E3%82%B9-store-pass/id6740623829"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <img
+                            src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ja-jp?size=250x83"
+                            alt="App Storeからダウンロード"
+                            class="h-16 sm:h-20 transition-transform duration-300 hover:scale-105"
+                        />
+                    </a>
 
-
-            <!-- ダウンロードボタン -->
-            <div class="flex flex-row justify-start items-center space-x-4 pl-0 sm:pl-16">
-                <!-- App Store -->
-                <a
-                    href="https://apps.apple.com/jp/app/%E3%82%B9%E3%83%88%E3%83%91%E3%82%B9-store-pass/id6740623829"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    <img
-                        src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ja-jp?size=250x83"
-                        alt="App Storeからダウンロード"
-                        class="h-16 sm:h-20 transition-transform duration-300 hover:scale-105"
-                    />
-                </a>
-
-                <!-- Google Play -->
-                <a
-                    href="https://play.google.com/store/apps/details?id=com.obfall.yumepass&hl=ja"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    <img
-                        src="https://play.google.com/intl/ja/badges/static/images/badges/ja_badge_web_generic.png"
-                        alt="Google Playで手に入れよう"
-                        class="h-16 sm:h-24 transition-transform duration-300 hover:scale-105"
-                    />
-                </a>
+                    <!-- Google Play -->
+                    <a
+                        href="https://play.google.com/store/apps/details?id=com.obfall.yumepass&hl=ja"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <img
+                            src="https://play.google.com/intl/ja/badges/static/images/badges/ja_badge_web_generic.png"
+                            alt="Google Playで手に入れよう"
+                            class="h-16 sm:h-24 transition-transform duration-300 hover:scale-105"
+                        />
+                    </a>
+                </div>
             </div>
         </div>
 
@@ -176,6 +176,7 @@
         </div>
     </div>
 </section>
+
 
 
 
