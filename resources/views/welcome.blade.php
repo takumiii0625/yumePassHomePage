@@ -172,7 +172,7 @@
 
         <!-- 右側：画像 -->
         <div class="lg:w-1/2 w-full flex justify-center mt-10 lg:mt-0">
-            <img src="/images/store-pass_logo.png" alt="アプリ画面" class="w-64 sm:w-[360px] drop-shadow-xl rounded-xl">
+            <img src="/images/iphone立体画像.jpg" alt="アプリ画面" class="w-64 sm:w-[360px] drop-shadow-xl rounded-xl">
         </div>
     </div>
 </section>
