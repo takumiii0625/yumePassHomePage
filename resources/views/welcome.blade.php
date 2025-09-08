@@ -266,7 +266,7 @@
         :root {
             --marquee-gap: 1rem;
             /* さらに詰める */
-            --marquee-item-w: 15vw;
+            --marquee-item-w: 20vw;
             /* 画面に約3〜4個 */
             --marquee-img-h: 96px;
             /* 高さも縮小 */
