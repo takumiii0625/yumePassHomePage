@@ -239,7 +239,7 @@
     :root {
         --marquee-gap: 1rem;
         /* カード間のすき間 */
-        --marquee-item-w: clamp(110px, 14vw, 160px);
+        --marquee-item-w: clamp(165px, 21vw, 240px);
         /* 各カードの幅（レスポンシブ） */
         --marquee-img-h: 160px;
         /* 画像の高さ */
