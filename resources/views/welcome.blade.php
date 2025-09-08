@@ -237,13 +237,13 @@
 <style>
     /* 調整しやすいようにCSS変数で管理 */
     :root {
-        --marquee-gap: 2rem;
+        --marquee-gap: 1rem;
         /* カード間のすき間 */
-        --marquee-item-w: clamp(220px, 28vw, 320px);
+        --marquee-item-w: clamp(110px, 14vw, 160px);
         /* 各カードの幅（レスポンシブ） */
         --marquee-img-h: 160px;
         /* 画像の高さ */
-        --marquee-duration: 10s;
+        --marquee-duration: 15s;
         /* 1周の時間（大きいほどゆっくり） */
     }
 
@@ -256,7 +256,7 @@
             /* 画面に約2.5個見えるサイズ感 */
             --marquee-img-h: 120px;
             /* 画像も少し小さく */
-            --marquee-duration: 10s;
+            --marquee-duration: 15s;
             /* 1周の時間（大きいほどゆっくり） */
         }
     }
@@ -270,7 +270,7 @@
             /* 画面に約3〜4個 */
             --marquee-img-h: 96px;
             /* 高さも縮小 */
-            --marquee-duration: 5s;
+            --marquee-duration: 6s;
             /* 1周の時間（大きいほどゆっくり） */
         }
     }
@@ -287,9 +287,6 @@
         animation: marquee var(--marquee-duration) linear infinite;
     }
 
-    .marquee:hover .marquee__track {
-        animation-play-state: paused;
-    }
 
     /* ホバーで一時停止（任意） */
     .marquee__item {
