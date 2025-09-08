@@ -264,7 +264,7 @@
     /* スマホ：もっと小さく（3〜4枚見える感じ） */
     @media (max-width: 480px) {
         :root {
-            --marquee-gap: 0.5rem;
+            --marquee-gap: 1rem;
             /* さらに詰める */
             --marquee-item-w: 15vw;
             /* 画面に約3〜4個 */
