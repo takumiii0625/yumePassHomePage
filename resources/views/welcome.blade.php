@@ -270,7 +270,7 @@
             /* 画面に約3〜4個 */
             --marquee-img-h: 96px;
             /* 高さも縮小 */
-            --marquee-duration: 6s;
+            --marquee-duration: 10s;
             /* 1周の時間（大きいほどゆっくり） */
         }
     }
