@@ -243,7 +243,7 @@
         /* 各カードの幅（レスポンシブ） */
         --marquee-img-h: 160px;
         /* 画像の高さ */
-        --marquee-duration: 15s;
+        --marquee-duration: 18s;
         /* 1周の時間（大きいほどゆっくり） */
     }
 
