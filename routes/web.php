@@ -124,6 +124,7 @@ Route::get('/admin/news/{id}/edit/complete', [AdminNewsController::class, 'editC
 Route::post('/admin/news/{id}/delete', [AdminNewsController::class, 'deleteExecute'])->name('adminNewsDeleteExecute');
 
 
+// 店舗QRコード表示
 Route::get('/admin/shops/{docId}/qr.png', function ($docId) {
 
     // QRに埋め込むチェックインURL（docId直使用）
