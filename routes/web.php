@@ -9,6 +9,8 @@ use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\NewsController as FrontendNewsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+
 
 // トップページ
 // Route::get('/', function () {
@@ -122,6 +124,16 @@ Route::get('/admin/news/{id}/edit/complete', [AdminNewsController::class, 'editC
 Route::post('/admin/news/{id}/delete', [AdminNewsController::class, 'deleteExecute'])->name('adminNewsDeleteExecute');
 
 
+Route::get('/admin/shops/{docId}/qr.png', function ($docId) {
+
+    // QRに埋め込むチェックインURL（docId直使用）
+    $url = "https://yume-pass.com/checkin?code={$docId}";
+
+    $png = QrCode::format('png')->size(500)->generate($url);
+
+    return response($png)
+        ->header('Content-Type', 'image/png');
+})->name('admin.shops.qr.png');
 
 //ログアウト
 Route::post('/logout', function () {
@@ -130,7 +142,7 @@ Route::post('/logout', function () {
 })->name('logout');
 
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 // 認証フォーム表示
 Route::get('/register-auth', function () {
