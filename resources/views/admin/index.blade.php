@@ -83,6 +83,61 @@
     <div class="mt-8">
         {{ $news->links('vendor.pagination.tailwind') }}
     </div>
+
+    <!-- 店舗からの声一覧 -->
+<h1 class="text-3xl font-semibold mt-12 mb-6">店舗からの声一覧</h1>
+
+<!-- 店舗からの声 追加ボタン -->
+<a href="{{ route('adminStoreVoiceCreate') }}"
+   class="inline-block bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300 mb-6">
+    店舗からの声を追加
+</a>
+
+<div class="overflow-x-auto bg-white shadow-lg rounded-lg">
+    <table class="min-w-full table-auto">
+        <thead class="bg-blue-600 text-white">
+            <tr>
+                <th class="px-6 py-3 text-left">タイトル</th>
+                <th class="px-6 py-3 text-left">店舗名</th>
+                <th class="px-6 py-3 text-left">公開日</th>
+                <th class="px-6 py-3 text-left">公開</th>
+                <th class="px-6 py-3 text-left">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            @forelse ($voices as $voice)
+                <tr class="border-b hover:bg-gray-50">
+                    <td class="px-6 py-4">{{ $voice->title ?? '未設定' }}</td>
+                    <td class="px-6 py-4">{{ $voice->store->name ?? '未設定' }}</td>
+                    <td class="px-6 py-4">{{ $voice->published_at ?? '未設定' }}</td>
+                    <td class="px-6 py-4">
+                        @if($voice->is_published)
+                            <span class="text-green-700 bg-green-100 px-2 py-1 rounded text-sm">公開</span>
+                        @else
+                            <span class="text-gray-700 bg-gray-100 px-2 py-1 rounded text-sm">非公開</span>
+                        @endif
+                    </td>
+                    <td class="px-6 py-4">
+                        <a href="{{ route('adminStoreVoiceEdit', $voice->id) }}"
+                           class="text-blue-600 hover:text-blue-800 transition duration-300">
+                            編集
+                        </a>
+                    </td>
+                </tr>
+            @empty
+                <tr class="border-b hover:bg-gray-50">
+                    <td class="px-6 py-4" colspan="5">データがありません。</td>
+                </tr>
+            @endforelse
+        </tbody>
+    </table>
+</div>
+
+<!-- ページネーション（店舗からの声） -->
+<div class="mt-8">
+    {{ $voices->links('vendor.pagination.tailwind') }}
+</div>
+
 @endsection
 
 @section('scripts')

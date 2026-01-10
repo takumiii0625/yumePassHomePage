@@ -14,15 +14,27 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Database\QueryException;
 use App\Models\News;
 use Carbon\Carbon;
+use App\Models\StoreVoice;
 class StoreController extends Controller
 {
     // 店舗一覧の表示
     public function index()
     {
-        $stores = Store::where('delete_flg', 0)->paginate(10);
-        $news = News::where('delete_flg', 0)->orderBy('published_at', 'desc')->paginate(10);
+        $stores = Store::where('delete_flg', 0)
+            ->paginate(10, ['*'], 'stores_page');
 
-        return view('admin/index', compact('stores', 'news'));
+        $news = News::where('delete_flg', 0)
+            ->orderBy('published_at', 'desc')
+            ->paginate(10, ['*'], 'news_page');
+
+        $voices = StoreVoice::where('delete_flg', 0)
+            ->with(['store:id,name'])
+            ->orderBy('sort_order')
+            ->orderByDesc('published_at')
+            ->orderByDesc('id')
+            ->paginate(10, ['*'], 'voices_page');
+
+        return view('admin/index', compact('stores', 'news', 'voices'));
     }
 
     // 店舗登録(入力)
@@ -152,18 +164,45 @@ class StoreController extends Controller
                 ->with('error', '店舗が存在しません。');
         }
 
+        // =========================
+        // 画像の処理をここで追加
+        // =========================
+        if ($request->hasFile('image')) {
+            // 新しい画像がアップロードされた場合 → 一時フォルダに保存
+            $image    = $request->file('image');
+            $filename = uniqid() . '.' . $image->getClientOriginalExtension();
+            $tempPath = 'tmp_images/' . $filename;
+
+            // 一時フォルダに保存
+            $image->move(public_path('tmp_images'), $filename);
+
+            // セッションに入れるのは「パス文字列」だけ
+            $input['image'] = $tempPath;
+
+        } else {
+            // 画像を変更していない場合 → 元のパスを維持
+            // （画像を消す仕様にしたいならここを別ロジックに）
+            $input['image'] = $store->image;
+        }
+
         // データを整形
+        $assign = [];
+        $update = [];
+
         foreach ($input as $key => $value) {
             switch ($key) {
                 default:
                     $assign['confirm'][$key] = $value ?? '未設定';
-                    $update[$key] = $value;
+                    $update[$key]            = $value;
                     break;
             }
         }
 
         // セッションに保存（戻るボタンを押した場合に元の値を保持）
-        session(['updateInputStore' => $input, 'updateStore' => $update]);
+        session([
+            'updateInputStore' => $input,   // フォーム用
+            'updateStore'      => $update,  // 実際に更新に使う配列
+        ]);
 
         return view('admin/stores/edit/confirm', compact('assign', 'store'));
     }
@@ -174,7 +213,9 @@ class StoreController extends Controller
     {
         // 書き直し処理
         if ($request->back) {
-            return redirect()->route('adminStoreControllerEditInput', ['id' => $id])->withInput(session('updateInputStore'));
+            return redirect()
+                ->route('adminStoreControllerEditInput', ['id' => $id])
+                ->withInput(session('updateInputStore'));
         }
 
         // 店舗情報を取得（削除されていないデータのみ）
@@ -194,6 +235,25 @@ class StoreController extends Controller
 
         // 更新データをセッションから取得
         $update = session('updateStore');
+
+        // =========================
+        // 画像が tmp_images の場合 → images に移動
+        // =========================
+        if (!empty($update['image']) && str_starts_with($update['image'], 'tmp_images/')) {
+            $tmpPath   = public_path($update['image']);      // tmp_images/xxx.png
+            $filename  = basename($update['image']);
+            $finalPath = 'images/' . $filename;              // 保存先
+
+            if (file_exists($tmpPath)) {
+                // tmp → images へ移動
+                rename($tmpPath, public_path($finalPath));
+                $update['image'] = $finalPath;               // DB用パスに更新
+            } else {
+                // 一時ファイルがなければ、念のため元の画像を維持するか null にする
+                $update['image'] = $store->image;            // or null
+            }
+        }
+        // （※ ここで $update['image'] が null なら「画像削除」として扱う仕様にもできる）
 
         try {
             DB::beginTransaction();

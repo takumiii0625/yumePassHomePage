@@ -10,7 +10,8 @@ use App\Http\Controllers\NewsController as FrontendNewsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
-
+use App\Http\Controllers\Admin\StoreVoiceController;
+use App\Http\Controllers\StoreVoicePublicController;
 
 // トップページ
 // Route::get('/', function () {
@@ -166,3 +167,15 @@ Route::get('/register', function () {
     }
     return view('auth.register'); // register.blade.php の場所
 })->name('register');
+
+Route::prefix('admin')->middleware(['auth', 'verified'])->group(function () {
+    Route::get('store-voices', [StoreVoiceController::class, 'index'])->name('adminStoreVoiceIndex');
+    Route::get('store-voices/create', [StoreVoiceController::class, 'create'])->name('adminStoreVoiceCreate');
+    Route::post('store-voices', [StoreVoiceController::class, 'store'])->name('adminStoreVoiceStore');
+    Route::get('store-voices/{id}/edit', [StoreVoiceController::class, 'edit'])->name('adminStoreVoiceEdit');
+    Route::post('store-voices/{id}', [StoreVoiceController::class, 'update'])->name('adminStoreVoiceUpdate');
+    Route::post('store-voices/{id}/delete', [StoreVoiceController::class, 'delete'])->name('adminStoreVoiceDelete');
+});
+
+Route::get('/store-voices/{id}', [StoreVoicePublicController::class, 'show'])
+    ->name('storeVoiceShow');

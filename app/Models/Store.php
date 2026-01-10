@@ -22,5 +22,10 @@ class Store extends Model
     ];
 
     public $timestamps = false;
+
+    public function voices()
+    {
+        return $this->hasMany(StoreVoice::class);
+    }
 }
 
