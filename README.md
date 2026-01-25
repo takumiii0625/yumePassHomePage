@@ -67,4 +67,5 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 ## ロリポップ接続
 ssh -p 2222 main.jp-20967baf25773994@ssh.lolipop.jp
+PW:8aOI0bRwmlk82PB4V3PNXUCQJJYvNO57
 
