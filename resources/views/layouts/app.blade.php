@@ -7,6 +7,7 @@
     <title>ストパス（Store-Pass）</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @stack('styles')
 </head>
 
 <body class="bg-gray-50">
@@ -47,11 +48,13 @@
     </header>
 
     <!-- メインコンテンツ -->
-    <main class="container mx-auto px-4 pt-20 sm:pt-32">
+    <main>
         <!-- サクセスメッセージ -->
         @if (session('success'))
-        <div class="bg-green-200 text-green-800 p-6 rounded-lg mb-8 shadow-lg transform transition duration-300 hover:scale-105">
-            {{ session('success') }}
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="bg-green-200 text-green-800 p-6 rounded-lg mb-8 shadow-lg transform transition duration-300 hover:scale-105">
+                {{ session('success') }}
+            </div>
         </div>
         @endif
 
@@ -59,7 +62,7 @@
     </main>
 
     <!-- フッター -->
-    <footer class="bg-gray-800 text-white py-6 mt-16">
+    <footer class="bg-gray-800 text-white py-6">
         <div class="max-w-7xl mx-auto px-4 text-center">
             <!-- ナビゲーション -->
             <nav>
